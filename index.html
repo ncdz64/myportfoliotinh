@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninh Quốc Cường | TFT Mythic Arena Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/avatar_clean.png">
+</head>
+<body>
+
+    <!-- Fullscreen White / Gold Transition Flash -->
+    <div id="scene-flash"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification"></div>
+
+    <!-- =====================================================
+         SCENE 1: TFT MYTHIC ARENA INTRO (5 SECONDS VIDEO)
+    ====================================================== -->
+    <section id="intro-scene" class="scene active">
+        <!-- Ambient blurred background video -->
+        <div class="ambient-bg">
+            <video id="intro-ambient" playsinline muted loop>
+                <source src="assets/intro.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Main 5-second intro video (Golden Dragon Skyscraper Arena) -->
+        <div id="intro-wrapper" class="intro-video-wrapper">
+            <video id="intro-vid" class="main-vid" playsinline preload="auto">
+                <source src="assets/intro.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Cinematic Vignette & Ambient Particles -->
+        <div id="vignette"></div>
+        <canvas id="particles-canvas"></canvas>
+
+        <!-- TFT HUD Overlay (Appears after 5 seconds) -->
+        <div id="intro-hud-overlay">
+            <div class="intro-top-badge">
+                <div class="tft-gem"></div>
+                <span class="tft-stage-title">VÒNG 1-1 • SÀN ĐẤU THẦN THOẠI TÒA NHÀ RỒNG VÀNG</span>
+                <div class="tft-gem"></div>
+            </div>
+
+            <div class="intro-center-prompt">
+                <button id="enter-arena-btn" class="tft-enter-btn">
+                    <span class="btn-dragon-icon">🐉</span>
+                    <span class="btn-text">KHỞI TRANH • VÀO ĐẤU TRƯỜNG</span>
+                    <span class="btn-dragon-icon">⚡</span>
+                </button>
+                <div class="intro-skip-hint">Nhấp vào bất kỳ đâu trên màn hình để bắt đầu</div>
+            </div>
+        </div>
+
+        <!-- Skip Intro Button -->
+        <button id="skip-intro-btn">BỎ QUA INTRO ➔</button>
+    </section>
+
+    <!-- =====================================================
+         SCENE 2: MAIN TFT PORTFOLIO
+    ====================================================== -->
+    <main id="main-scene" class="scene">
+        <!-- Background Arena Video & Mood Gradient -->
+        <div id="main-bg-container">
+            <video id="main-bg-video" autoplay loop muted playsinline>
+                <source src="assets/arena_bg.mp4" type="video/mp4">
+            </video>
+            <div class="main-overlay-gradient"></div>
+        </div>
+
+        <!-- Background Music -->
+        <audio id="arena-bgm" loop preload="auto">
+            <source src="assets/arena_bgm.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Scrollable Portfolio Container -->
+        <div class="portfolio-root">
+
+            <!-- ── TFT HUD TOP NAVIGATION ────────────────────────── -->
+            <nav class="tft-navbar">
+                <div class="tft-nav-brand">
+                    <div class="challenger-badge" title="Bậc Thách Đấu TFT">👑</div>
+                    <div class="brand-info">
+                        <span class="brand-name">NINH QUỐC CƯỜNG</span>
+                        <span class="brand-rank">CHALLENGER • 1,250 LP</span>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+
+                <ul id="nav-menu" class="tft-nav-menu">
+                    <li><a href="#hero" class="tft-nav-link active">TỔNG QUAN</a></li>
+                    <li><a href="#augment-armory" class="tft-nav-link">CHỌN LÕI TFT</a></li>
+                    <li><a href="#inventory" class="tft-nav-link">TRANG BỊ</a></li>
+                    <li><a href="#augments" class="tft-nav-link">CHỨNG CHỈ</a></li>
+                    <li><a href="#history" class="tft-nav-link">HỌC VẤN</a></li>
+                    <li><a href="#combat" class="tft-nav-link">GIẢNG DẠY</a></li>
+                    <li><a href="#contact" class="tft-nav-link">LIÊN HỆ</a></li>
+                </ul>
+
+                <div class="tft-nav-controls">
+                    <button id="audio-toggle-btn" class="hud-btn active" title="Bật/Tắt âm thanh">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        </svg>
+                    </button>
+                    <button id="fullscreen-toggle-btn" class="hud-btn" title="Toàn màn hình">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- ── SECTION 1: HERO (TFT 3-STAR CHAMPION CARD) ───── -->
+            <section id="hero" class="hero-section">
+                <!-- Hextech decorative corner marks -->
+                <div class="hex-corner tl"></div>
+                <div class="hex-corner tr"></div>
+                <div class="hex-corner bl"></div>
+                <div class="hex-corner br"></div>
+
+                <div class="champion-card">
+                    <div class="champion-tier-tag">
+                        <span class="tier-stars">★★★</span>
+                        <span class="tier-label">TƯỚNG 5 VÀNG 3 SAO</span>
+                    </div>
+
+                    <!-- Left: Champion Avatar Frame -->
+                    <div class="champion-avatar-box">
+                        <div class="avatar-hex-frame">
+                            <div class="avatar-inner-wrap">
+                                <img src="assets/avatar_clean.png" alt="Ninh Quốc Cường" loading="eager">
+                            </div>
+                        </div>
+                        <div class="champion-level-chip">
+                            <span class="level-icon">✦</span>
+                            <span class="level-text">CẤP ĐỘ 9 • NGOẠI THƯƠNG</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Champion Details -->
+                    <div class="champion-info-box">
+                        <h1 class="champion-name">NINH QUỐC CƯỜNG</h1>
+                        <div class="champion-role">
+                            <span>⚜️</span>
+                            <span>Sinh viên năm 03 • FTU | Thành viên Ban Tổ chức TEC FTU | Chuyên gia Ngôn ngữ & Gia sư</span>
+                        </div>
+
+                        <!-- TFT Synergies / Traits -->
+                        <div class="traits-row">
+                            <div class="trait-pill" data-trait="ftu" data-aug-target="education" title="Nhấp để xem Lõi Học vấn FTU">
+                                <span class="trait-icon-hex">🏛️</span>
+                                <span class="trait-name">Ngoại Thương</span>
+                                <span class="trait-count">3/3</span>
+                            </div>
+                            <a class="trait-pill" href="https://www.facebook.com/tec.ftu" target="_blank" rel="noopener" data-trait="tec" data-aug-target="education" title="CLB Nhà Doanh Nghiệp Tương Lai TEC FTU (Nhấp để mở Fanpage)">
+                                <span class="trait-icon-hex">🚀</span>
+                                <span class="trait-name">BTC TEC FTU</span>
+                                <span class="trait-count">2/2</span>
+                            </a>
+                            <div class="trait-pill" data-trait="ielts" data-aug-target="ielts" title="Nhấp để xem Lõi IELTS 8.0">
+                                <span class="trait-icon-hex">🌐</span>
+                                <span class="trait-name">Bậc Thầy IELTS</span>
+                                <span class="trait-count">4/4</span>
+                            </div>
+                            <div class="trait-pill" data-trait="teaching" data-aug-target="teaching" title="Nhấp để xem Lõi Giảng dạy">
+                                <span class="trait-icon-hex">👨‍🏫</span>
+                                <span class="trait-name">Sư Phạm & Gia Sư</span>
+                                <span class="trait-count">4/4</span>
+                            </div>
+                            <div class="trait-pill" data-trait="mos" data-aug-target="ielts" title="Nhấp để xem Lõi MOS & Tin học">
+                                <span class="trait-icon-hex">💻</span>
+                                <span class="trait-name">Tin Học MOS</span>
+                                <span class="trait-count">3/3</span>
+                            </div>
+                        </div>
+
+                        <!-- Champion Quote -->
+                        <div class="champion-bio">
+                            "Sinh viên Chương trình Chất lượng cao Kinh tế Đối ngoại tại Đại học Ngoại thương (FTU), Thành viên Ban Tổ chức CLB Doanh Nghiệp Tương Lai (TEC FTU). Sở hữu nền tảng tiếng Anh học thuật xuất sắc (IELTS 8.0, Giải Nhì HSG Tỉnh, 9.25 THPTQG), kết hợp tư duy khởi nghiệp thực chiến và kinh nghiệm giảng dạy nhiệt huyết nhằm tối ưu hóa tiềm năng của từng học viên."
+                        </div>
+
+                        <!-- TFT Champion Stats Grid -->
+                        <div class="champion-stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <span class="stat-name">MÁU (ĐỘ BỀN BỈ & CAM KẾT)</span>
+                                    <span class="stat-val">3,200 / 3,200</span>
+                                </div>
+                                <div class="stat-track">
+                                    <div class="stat-fill hp" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <span class="stat-name">NĂNG LƯỢNG (TƯ DUY KINH TẾ FTU & TEC)</span>
+                                    <span class="stat-val">100 / 100</span>
+                                </div>
+                                <div class="stat-track">
+                                    <div class="stat-fill mana" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <span class="stat-name">SÁT THƯƠNG NGÔN NGỮ (IELTS OVERALL)</span>
+                                    <span class="stat-val">8.0 / 9.0</span>
+                                </div>
+                                <div class="stat-track">
+                                    <div class="stat-fill ad" style="width: 89%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <span class="stat-name">SỨC MẠNH PHÉP THUẬT (ĐIỂM ANH THPTQG)</span>
+                                    <span class="stat-val">9.25 / 10.0</span>
+                                </div>
+                                <div class="stat-track">
+                                    <div class="stat-fill ap" style="width: 92.5%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Contact Chips -->
+                        <div class="quick-chips-row">
+                            <a class="quick-chip" href="https://www.facebook.com/tec.ftu" target="_blank" rel="noopener" title="CLB Nhà Doanh Nghiệp Tương Lai - TEC FTU (Mở Fanpage)">
+                                <i>🚀</i> BTC CLB TEC FTU ➔
+                            </a>
+                            <div class="quick-chip" data-copy="0329576978" title="Nhấp để sao chép số điện thoại">
+                                <i>📞</i> 0329576978
+                            </div>
+                            <div class="quick-chip" data-copy="ninhquoccuong06@gmail.com" title="Nhấp để sao chép email">
+                                <i>✉️</i> ninhquoccuong06@gmail.com
+                            </div>
+                            <div class="quick-chip" title="Địa chỉ">
+                                <i>📍</i> Láng Thượng, Đống Đa, Hà Nội
+                            </div>
+                            <div class="quick-chip" title="Ngày sinh">
+                                <i>🎂</i> 06/04/2006
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =====================================================
+                 CHỌN LÕI NÂNG CẤP (TFT AUGMENT SELECTION ARMORY)
+            ====================================================== -->
+            <section id="augment-armory" class="augment-armory-section">
+                <div class="armory-stage-banner">
+                    <div class="armory-round-indicator">
+                        <span class="tft-gem"></span>
+                        <span id="armory-stage-text" class="armory-round-title">GIAI ĐOẠN 2-1 • VÒNG CHỌN LÕI CÔNG NGHỆ</span>
+                        <span class="tft-gem"></span>
+                    </div>
+                    <h2 class="armory-main-title">CHỌN LÕI ĐỂ XEM HỒ SƠ CHI TIẾT</h2>
+                    <p class="armory-instruction">BẤM VÀO 1 TRONG CÁC LÕI BÊN DƯỚI ĐỂ MỞ KHÓA THÔNG TIN CHI TIẾT</p>
+                    
+                    <div class="armory-reroll-wrap">
+                        <button id="armory-reroll-btn" class="reroll-btn" title="Đổi lại danh sách lõi nâng cấp">
+                            <span class="reroll-dice">🎲</span>
+                            <span>ĐỔI LẠI (REROLL)</span>
+                            <span id="reroll-count" class="reroll-count">2 LƯỢT</span>
+                        </button>
+                        <button id="toggle-view-mode-btn" class="view-all-toggle-btn" title="Chuyển chế độ xem tất cả hoặc từng lõi">
+                            👁️ XEM TẤT CẢ DỮ LIỆU
+                        </button>
+                    </div>
+                </div>
+
+                <!-- The Augment Choices Grid -->
+                <div class="augment-selection-grid">
+                    <!-- Choice 1: IELTS 8.0 & MOS -->
+                    <div class="augment-choice-card prismatic selected" data-augment="ielts">
+                        <span class="card-tier-ribbon">LÕI KIM CƯƠNG • PRISMATIC</span>
+                        <div class="card-icon-emblem">🌐</div>
+                        <h3 class="card-title-text">Bậc Thầy Ngôn Ngữ</h3>
+                        <p class="card-summary-desc">
+                            Kích hoạt chứng chỉ <strong>IELTS 8.0 Overall</strong> (Listening 8.5, Reading 8.5) và bộ chứng chỉ tin học quốc tế <strong>MOS 2019</strong> (Word, Excel, PowerPoint).
+                        </p>
+                        <button class="card-action-btn">LÕI ĐANG CHỌN ✓</button>
+                    </div>
+
+                    <!-- Choice 2: Teaching Experience -->
+                    <div class="augment-choice-card gold" data-augment="teaching">
+                        <span class="card-tier-ribbon">LÕI VÀNG • GOLD</span>
+                        <div class="card-icon-emblem">👨‍🏫</div>
+                        <h3 class="card-title-text">Chiến Thần Sư Phạm</h3>
+                        <p class="card-summary-desc">
+                            Mở khóa bề dày kinh nghiệm <strong>Trợ giảng The IELTS Workshop (TIW)</strong>, Gia sư 1-1 THPTQG, Gia sư vào 10 và Gia sư IELTS các cấp độ.
+                        </p>
+                        <button class="card-action-btn">CHỌN LÕI NÀY ➔</button>
+                    </div>
+
+                    <!-- Choice 3: Education & Academic & TEC FTU -->
+                    <div class="augment-choice-card gold" data-augment="education">
+                        <span class="card-tier-ribbon">LÕI VÀNG • GOLD</span>
+                        <div class="card-icon-emblem">🏛️</div>
+                        <h3 class="card-title-text">Học Thuật & Lãnh Đạo TEC FTU</h3>
+                        <p class="card-summary-desc">
+                            Sinh viên <strong>ĐH Ngoại thương FTU (CLC Kinh tế đối ngoại)</strong>, <strong>Ban Tổ chức CLB TEC FTU</strong>, cựu học sinh THPT Chuyên Vĩnh Phúc (GPA 9.3, Giải Nhì HSG Tỉnh, 9.25 THPTQG).
+                        </p>
+                        <button class="card-action-btn">CHỌN LÕI NÀY ➔</button>
+                    </div>
+
+                    <!-- Choice 4: Inventory & Contact -->
+                    <div class="augment-choice-card radiant" data-augment="inventory">
+                        <span class="card-tier-ribbon">LÕI ÁNH SÁNG • RADIANT</span>
+                        <div class="card-icon-emblem">👑</div>
+                        <h3 class="card-title-text">Kho Trang Bị & Thách Đấu</h3>
+                        <p class="card-summary-desc">
+                            Bộ 4 trang bị thành tích danh giá, thông tin liên lạc trực tiếp (SĐT <strong>0329576978</strong>, Email) và xem trực tiếp bản gốc CV đầy đủ.
+                        </p>
+                        <button class="card-action-btn">CHỌN LÕI NÀY ➔</button>
+                    </div>
+                </div>
+
+                <!-- Active Augment Detail Viewport (Hiển thị chi tiết theo Lõi được chọn) -->
+                <div id="active-augment-detail-viewport">
+                    <div class="viewport-header-bar">
+                        <div class="viewport-title-wrap">
+                            <span id="viewport-icon" class="viewport-icon">🌐</span>
+                            <h3 id="viewport-title" class="viewport-title">LÕI ĐANG KÍCH HOẠT: BẬC THẦY NGÔN NGỮ (IELTS 8.0 & MOS)</h3>
+                            <span id="viewport-badge" class="viewport-status-badge">ĐANG XEM CHI TIẾT</span>
+                        </div>
+                        <button id="viewport-change-btn" class="viewport-close-btn">
+                            🔄 CHỌN LÕI KHÁC
+                        </button>
+                    </div>
+
+                    <!-- Panel 1: IELTS & MOS -->
+                    <div id="panel-ielts" class="viewport-content-panel active">
+                        <div class="augments-showcase-grid">
+                            <div class="augment-card prismatic">
+                                <div class="augment-top-bar">
+                                    <span class="augment-tier-pill">LÕI KIM CƯƠNG • BẬC THẦY</span>
+                                    <span style="font-size: 1.2rem;">💎</span>
+                                </div>
+                                <div class="augment-icon-wrap">🌐</div>
+                                <h3 class="augment-title">IELTS 8.0 Overall</h3>
+                                <div class="augment-subtitle">Bài thi chuẩn hóa năng lực tiếng Anh quốc tế</div>
+                                <div class="ielts-skills-grid">
+                                    <div class="ielts-skill-box">
+                                        <span class="skill-label">Listening</span>
+                                        <span class="skill-score">8.5</span>
+                                    </div>
+                                    <div class="ielts-skill-box">
+                                        <span class="skill-label">Reading</span>
+                                        <span class="skill-score">8.5</span>
+                                    </div>
+                                    <div class="ielts-skill-box">
+                                        <span class="skill-label">Writing</span>
+                                        <span class="skill-score">7.0</span>
+                                    </div>
+                                    <div class="ielts-skill-box">
+                                        <span class="skill-label">Speaking</span>
+                                        <span class="skill-score">7.0</span>
+                                    </div>
+                                </div>
+                                <div class="augment-desc">
+                                    <ul>
+                                        <li>Phản xạ nghe nói tự nhiên, phát âm chuẩn xác và diễn đạt mạch lạc trong môi trường học thuật.</li>
+                                        <li>Kỹ năng đọc hiểu phân tích sâu, xử lý các nguồn tài liệu quốc tế phức tạp với độ chính xác cao.</li>
+                                        <li>Phương pháp sư phạm giúp học viên nắm chắc bí quyết chinh phục band điểm mục tiêu.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="augment-card gold">
+                                <div class="augment-top-bar">
+                                    <span class="augment-tier-pill">LÕI VÀNG • CÔNG NGHỆ</span>
+                                    <span style="font-size: 1.2rem;">🥇</span>
+                                </div>
+                                <div class="augment-icon-wrap">💻</div>
+                                <h3 class="augment-title">Chứng Chỉ Tin Học MOS</h3>
+                                <div class="augment-subtitle">Microsoft Office Specialist (Phiên bản 2019)</div>
+                                <div class="augment-desc">
+                                    <ul>
+                                        <li><strong>Microsoft Excel:</strong> Quản lý số liệu, tính toán thống kê và thiết lập biểu đồ theo dõi lộ trình tiến bộ của học viên.</li>
+                                        <li><strong>Microsoft PowerPoint:</strong> Thiết kế slide giảng dạy trực quan sinh động, tối ưu khả năng tập trung và tiếp thu bài học.</li>
+                                        <li><strong>Microsoft Word:</strong> Soạn thảo giáo trình, chuyên đề ngữ pháp và hệ thống bài tập chỉn chu, chuyên nghiệp.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="augment-card silver">
+                                <div class="augment-top-bar">
+                                    <span class="augment-tier-pill">LÕI BẠC • TRUYỀN THỐNG</span>
+                                    <span style="font-size: 1.2rem;">🥈</span>
+                                </div>
+                                <div class="augment-icon-wrap">🏫</div>
+                                <h3 class="augment-title">Chuyên Tiếng Anh Vĩnh Phúc</h3>
+                                <div class="augment-subtitle">Nền tảng đào tạo tinh hoa cấp phổ thông</div>
+                                <div class="augment-desc">
+                                    <ul>
+                                        <li><strong>GPA môn Tiếng Anh 3 năm THPT:</strong><br>• Lớp 10: <strong>9,2</strong> | Lớp 11: <strong>9,2</strong> | Lớp 12: <strong>9,3</strong></li>
+                                        <li>Đạt <strong>Giải Nhì HSG Tiếng Anh cấp Tỉnh lớp 11</strong> tại THPT Chuyên Vĩnh Phúc.</li>
+                                        <li>Đạt <strong>9,25 môn Tiếng Anh</strong> trong kỳ thi THPT Quốc Gia năm 2024.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Teaching Experience -->
+                    <div id="panel-teaching" class="viewport-content-panel">
+                        <div class="combat-experience-grid">
+                            <div class="combat-card">
+                                <div class="combat-card-top">
+                                    <div class="combat-icon">🏫</div>
+                                    <div class="combat-org">
+                                        <h3 class="combat-role">Trợ Giảng Chuyên Môn</h3>
+                                        <span class="combat-place">The IELTS Workshop (TIW)</span>
+                                    </div>
+                                </div>
+                                <div class="combat-desc">
+                                    <ul>
+                                        <li>Hỗ trợ, chấm và sửa bài chi tiết cả 4 kỹ năng (Listening, Reading, Writing, Speaking) cho học viên các lớp luyện thi.</li>
+                                        <li>Trực tiếp đứng lớp giảng dạy các buổi bổ trợ chuyên sâu kỹ năng Speaking, giúp học viên giải tỏa áp lực, cải thiện phát âm và độ lưu loát.</li>
+                                        <li>Theo sát tiến độ học tập từng buổi, giải đáp thắc mắc chuyên môn và truyền cảm hứng tự học tiếng Anh.</li>
+                                    </ul>
+                                </div>
+                                <div class="combat-tags">
+                                    <span class="combat-pill">IELTS Speaking</span>
+                                    <span class="combat-pill">Chấm chữa 4 kỹ năng</span>
+                                    <span class="combat-pill">The IELTS Workshop</span>
+                                </div>
+                            </div>
+
+                            <div class="combat-card">
+                                <div class="combat-card-top">
+                                    <div class="combat-icon">🎯</div>
+                                    <div class="combat-org">
+                                        <h3 class="combat-role">Gia Sư 1-1 Ôn Luyện THPTQG</h3>
+                                        <span class="combat-place">Luyện Thi Tốt Nghiệp THPT & Đại Học</span>
+                                    </div>
+                                </div>
+                                <div class="combat-desc">
+                                    <ul>
+                                        <li>Thiết kế lộ trình học cá nhân hóa dựa trên học lực hiện tại của từng học sinh để tối ưu hóa điểm số môn Tiếng Anh.</li>
+                                        <li>Tổng ôn toàn bộ các chuyên đề ngữ pháp trọng điểm, nhận diện các bẫy đề thi và chia sẻ mẹo làm bài trắc nghiệm nhanh gọn, chính xác.</li>
+                                        <li>Đồng hành, giải đáp đề thi thử hàng tuần giúp học sinh nâng band điểm mục tiêu từ 8.5+ đến 9.0+.</li>
+                                    </ul>
+                                </div>
+                                <div class="combat-tags">
+                                    <span class="combat-pill">Luyện thi THPTQG</span>
+                                    <span class="combat-pill">Lộ trình 1-1</span>
+                                    <span class="combat-pill">Mục tiêu 9+</span>
+                                </div>
+                            </div>
+
+                            <div class="combat-card">
+                                <div class="combat-card-top">
+                                    <div class="combat-icon">👥</div>
+                                    <div class="combat-org">
+                                        <h3 class="combat-role">Gia Sư Nhóm Ôn Thi Vào 10</h3>
+                                        <span class="combat-place">Kỳ Thi Tuyển Sinh Vào Lớp 10 Chuyên & CLC</span>
+                                    </div>
+                                </div>
+                                <div class="combat-desc">
+                                    <ul>
+                                        <li>Dẫn dắt lớp học nhóm ôn thi vào các trường THPT Chuyên và trường THPT Chất lượng cao.</li>
+                                        <li>Củng cố vững chắc nền tảng từ vựng học thuật, cấu trúc câu nâng cao và rèn luyện kỹ năng đọc hiểu văn bản phức tạp.</li>
+                                        <li>Tạo môi trường học tập tương tác sôi nổi, thúc đẩy tinh thần tự giác và thi đua giữa các thành viên.</li>
+                                    </ul>
+                                </div>
+                                <div class="combat-tags">
+                                    <span class="combat-pill">Thi vào 10</span>
+                                    <span class="combat-pill">Khối Chuyên & CLC</span>
+                                    <span class="combat-pill">Lớp Nhóm Tương Tác</span>
+                                </div>
+                            </div>
+
+                            <div class="combat-card">
+                                <div class="combat-card-top">
+                                    <div class="combat-icon">🌟</div>
+                                    <div class="combat-org">
+                                        <h3 class="combat-role">Gia Sư 1-1 & Nhóm IELTS</h3>
+                                        <span class="combat-place">Đào Tạo IELTS Toàn Diện (Academic)</span>
+                                    </div>
+                                </div>
+                                <div class="combat-desc">
+                                    <ul>
+                                        <li>Đảm nhận giảng dạy cả hình thức kèm riêng 1-1 lẫn theo nhóm cho học viên có nhu cầu thi chứng chỉ IELTS.</li>
+                                        <li>Hệ thống hóa chiến thuật xử lý các dạng câu hỏi khó trong Reading & Listening (True/False/Not Given, Matching Headings, Map Labelling).</li>
+                                        <li>Hướng dẫn tư duy lên ý tưởng (brainstorming) và triển khai luận điểm mạch lạc trong Writing Task 1 & Task 2.</li>
+                                    </ul>
+                                </div>
+                                <div class="combat-tags">
+                                    <span class="combat-pill">IELTS 1-1 & Nhóm</span>
+                                    <span class="combat-pill">Writing Task 1 & 2</span>
+                                    <span class="combat-pill">Listening & Reading 8.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Education -->
+                    <div id="panel-education" class="viewport-content-panel">
+                        <div class="timeline-stages">
+                            <div class="stage-node">
+                                <div class="stage-icon-pin">🏛️</div>
+                                <div class="stage-card">
+                                    <div class="stage-header">
+                                        <h3 class="stage-school-title">Trường Đại học Ngoại thương (FTU)</h3>
+                                        <span class="stage-time-badge">2024 - HIỆN TẠI</span>
+                                    </div>
+                                    <div class="stage-major">Chương trình chất lượng cao Kinh tế đối ngoại (CLC KTĐN)</div>
+                                    <ul class="stage-details-list">
+                                        <li>
+                                            <span class="stage-bullet">◆</span>
+                                            <span>Được đào tạo toàn diện về kinh tế quốc tế, thương mại toàn cầu, đàm phán hợp đồng bằng tiếng Anh và tư duy quản trị chiến lược.</span>
+                                        </li>
+                                        <li>
+                                            <span class="stage-bullet">◆</span>
+                                            <span>Tích cực tham gia các hoạt động học thuật, phát triển kỹ năng làm việc nhóm, thuyết trình và giải quyết vấn đề bằng Anh ngữ.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- TEC FTU Node -->
+                            <div class="stage-node">
+                                <div class="stage-icon-pin">🚀</div>
+                                <div class="stage-card" style="border-color: rgba(0, 245, 212, 0.5);">
+                                    <div class="stage-header">
+                                        <h3 class="stage-school-title" style="color: var(--hex-cyan);">CLB Nhà Doanh Nghiệp Tương Lai (TEC FTU)</h3>
+                                        <span class="stage-time-badge" style="background: rgba(0, 245, 212, 0.15); border-color: var(--hex-cyan); color: var(--hex-cyan);">BAN TỔ CHỨC • 2024 - NAY</span>
+                                    </div>
+                                    <div class="stage-major">
+                                        Thành viên Ban Tổ chức (Organizing Committee) • 
+                                        <a href="https://www.facebook.com/tec.ftu" target="_blank" rel="noopener" style="color: var(--gold-bright); text-decoration: underline; font-weight: bold;">
+                                            facebook.com/tec.ftu ➔
+                                        </a>
+                                    </div>
+                                    <ul class="stage-details-list">
+                                        <li>
+                                            <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                            <span>Thành viên Ban Tổ chức của CLB học thuật & kinh doanh khởi nghiệp danh tiếng và giàu truyền thống hàng đầu tại Trường ĐH Ngoại thương.</span>
+                                        </li>
+                                        <li>
+                                            <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                            <span>Trực tiếp tham gia công tác xây dựng kế hoạch, vận hành sự kiện, điều phối các chương trình, cuộc thi kinh doanh và diễn đàn kết nối sinh viên với các doanh nghiệp, nhà đầu tư.</span>
+                                        </li>
+                                        <li>
+                                            <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                            <span>Rèn luyện năng lực quản trị dự án thực chiến, tư duy giải quyết vấn đề linh hoạt và kỹ năng đàm phán đối tác trong môi trường hội nhập cao.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="stage-node">
+                                <div class="stage-icon-pin">🎓</div>
+                                <div class="stage-card">
+                                    <div class="stage-header">
+                                        <h3 class="stage-school-title">Trường THPT Chuyên Vĩnh Phúc</h3>
+                                        <span class="stage-time-badge">2021 - 2024</span>
+                                    </div>
+                                    <div class="stage-major">Lớp Chuyên Tiếng Anh - Khối trường Chuyên danh tiếng</div>
+                                    <ul class="stage-details-list">
+                                        <li>
+                                            <span class="stage-bullet">◆</span>
+                                            <span>Điểm trung bình môn Tiếng Anh xuất sắc cả 3 năm: <strong>Lớp 10 (9,2) • Lớp 11 (9,2) • Lớp 12 (9,3)</strong>.</span>
+                                        </li>
+                                        <li>
+                                            <span class="stage-bullet">◆</span>
+                                            <span><strong>Giải Nhì kỳ thi HSG Tiếng Anh cấp Tỉnh lớp 11</strong> do Sở Giáo dục & Đào tạo Vĩnh Phúc tổ chức.</span>
+                                        </li>
+                                        <li>
+                                            <span class="stage-bullet">◆</span>
+                                            <span><strong>9,25 môn Tiếng Anh kỳ thi THPTQG 2024</strong>, thuộc top đầu thí sinh đạt điểm cao trên toàn quốc.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 4: Inventory & Contact -->
+                    <div id="panel-inventory" class="viewport-content-panel">
+                        <div class="inventory-grid" style="margin-bottom: 30px;">
+                            <div class="item-slot-card">
+                                <div class="item-card-header">
+                                    <div class="item-badge-icon">🔮</div>
+                                    <div class="item-title-wrap">
+                                        <span class="item-rarity mythic">TRANG BỊ THẦN THOẠI</span>
+                                        <h3 class="item-name">Ấn Bậc Thầy IELTS 8.0</h3>
+                                    </div>
+                                </div>
+                                <p class="item-effect-desc">
+                                    Đạt <strong>IELTS 8.0 Overall</strong> với <strong>Listening 8.5</strong> và <strong>Reading 8.5</strong>. Cho phép phân tích mọi tài liệu học thuật và giao tiếp phản xạ tự nhiên.
+                                </p>
+                            </div>
+                            <div class="item-slot-card">
+                                <div class="item-card-header">
+                                    <div class="item-badge-icon">👑</div>
+                                    <div class="item-title-wrap">
+                                        <span class="item-rarity radiant">TRANG BỊ ÁNH SÁNG</span>
+                                        <h3 class="item-name">Vương Miện HSG Tỉnh Lớp 11</h3>
+                                    </div>
+                                </div>
+                                <p class="item-effect-desc">
+                                    Đạt <strong>Giải Nhì HSG môn Tiếng Anh cấp Tỉnh lớp 11</strong> tại Vĩnh Phúc. Khẳng định tư duy ngữ pháp chuyên sâu và vốn từ vựng học thuật vượt trội.
+                                </p>
+                            </div>
+                            <div class="item-slot-card">
+                                <div class="item-card-header">
+                                    <div class="item-badge-icon">🎯</div>
+                                    <div class="item-title-wrap">
+                                        <span class="item-rarity mythic">TRANG BỊ HEXTECH</span>
+                                        <h3 class="item-name">Kính Nhắm Thiện Xạ 9.25 THPTQG</h3>
+                                    </div>
+                                </div>
+                                <p class="item-effect-desc">
+                                    Xuất sắc đạt <strong>9.25 điểm môn Tiếng Anh</strong> kỳ thi THPT Quốc gia 2024. Nắm trọn cấu trúc đề thi và phương pháp làm bài thực chiến.
+                                </p>
+                            </div>
+                            <div class="item-slot-card">
+                                <div class="item-card-header">
+                                    <div class="item-badge-icon">📜</div>
+                                    <div class="item-title-wrap">
+                                        <span class="item-rarity">TRANG BỊ CHUYÊN GIA</span>
+                                        <h3 class="item-name">Bộ 3 Cuộn Sách MOS 2019</h3>
+                                    </div>
+                                </div>
+                                <p class="item-effect-desc">
+                                    Chứng chỉ MOS: <strong>Excel, PowerPoint, Word (2019)</strong>. Thành thạo phân tích dữ liệu, thiết kế giáo án trực quan và báo cáo tiến độ.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-grid">
+                            <div class="contact-card" data-copy="0329576978">
+                                <div class="contact-icon-bubble">📞</div>
+                                <span class="contact-title">SỐ ĐIỆN THOẠI / ZALO</span>
+                                <div class="contact-val">0329576978</div>
+                                <span class="contact-hint">Nhấp để sao chép</span>
+                            </div>
+                            <div class="contact-card" data-copy="ninhquoccuong06@gmail.com">
+                                <div class="contact-icon-bubble">✉️</div>
+                                <span class="contact-title">EMAIL HỌC THUẬT & CÔNG VIỆC</span>
+                                <div class="contact-val">ninhquoccuong06@gmail.com</div>
+                                <span class="contact-hint">Nhấp để sao chép</span>
+                            </div>
+                            <a class="contact-card" href="https://maps.google.com/?q=Lang+Thuong,+Dong+Da,+Ha+Noi" target="_blank" rel="noopener">
+                                <div class="contact-icon-bubble">📍</div>
+                                <span class="contact-title">KHU VỰC HOẠT ĐỘNG</span>
+                                <div class="contact-val">P. Láng Thượng, Q. Đống Đa, Hà Nội</div>
+                                <span class="contact-hint">Xem trên Google Maps ➔</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION 2: INVENTORY & ITEMS (KHO TRANG BỊ THÀNH TÍCH) ── -->
+            <section id="inventory" class="tft-section">
+                <div class="section-title-wrap">
+                    <div class="section-title-line"></div>
+                    <div class="section-gem-icon"></div>
+                    <h2 class="section-title">KHO TRANG BỊ THÀNH TÍCH</h2>
+                    <div class="section-gem-icon"></div>
+                    <div class="section-title-line"></div>
+                </div>
+
+                <div class="inventory-grid">
+                    <div class="item-slot-card" data-trait="ielts">
+                        <div class="item-card-header">
+                            <div class="item-badge-icon">🔮</div>
+                            <div class="item-title-wrap">
+                                <span class="item-rarity mythic">TRANG BỊ THẦN THOẠI</span>
+                                <h3 class="item-name">Ấn Bậc Thầy IELTS 8.0</h3>
+                            </div>
+                        </div>
+                        <p class="item-effect-desc">
+                            Đạt chứng chỉ <strong>IELTS 8.0 Overall</strong> với điểm số nổi trội tại cả 2 kỹ năng tiếp nhận: <strong>Listening 8.5</strong> và <strong>Reading 8.5</strong>. Cho phép phân tích mọi tài liệu học thuật chuyên sâu và giao tiếp phản xạ tự nhiên.
+                        </p>
+                        <div class="item-footer-stat">
+                            <span>✦</span> Hiệu Ứng: Kích hoạt +100% Khả Năng Thẩm Thấu Ngôn Ngữ
+                        </div>
+                    </div>
+
+                    <div class="item-slot-card" data-trait="teaching">
+                        <div class="item-card-header">
+                            <div class="item-badge-icon">👑</div>
+                            <div class="item-title-wrap">
+                                <span class="item-rarity radiant">TRANG BỊ ÁNH SÁNG</span>
+                                <h3 class="item-name">Vương Miện HSG Tỉnh Lớp 11</h3>
+                            </div>
+                        </div>
+                        <p class="item-effect-desc">
+                            Đạt <strong>Giải Nhì kỳ thi Học sinh Giỏi môn Tiếng Anh cấp Tỉnh lớp 11</strong> tại tỉnh Vĩnh Phúc. Khẳng định tư duy ngữ pháp chuyên sâu và vốn từ vựng học thuật vượt trội ngay từ cấp THPT.
+                        </p>
+                        <div class="item-footer-stat">
+                            <span>✦</span> Hiệu Ứng: Khắc Chế Toàn Bộ Ngữ Pháp Khó
+                        </div>
+                    </div>
+
+                    <div class="item-slot-card" data-trait="teaching">
+                        <div class="item-card-header">
+                            <div class="item-badge-icon">🎯</div>
+                            <div class="item-title-wrap">
+                                <span class="item-rarity mythic">TRANG BỊ HEXTECH</span>
+                                <h3 class="item-name">Kính Nhắm Thiện Xạ 9.25 THPTQG</h3>
+                            </div>
+                        </div>
+                        <p class="item-effect-desc">
+                            Xuất sắc đạt <strong>9.25 điểm môn Tiếng Anh</strong> trong kỳ thi Tốt nghiệp THPT Quốc gia 2024. Nắm trọn cấu trúc đề thi, bẫy trắc nghiệm và phương pháp tối ưu điểm số thực chiến cho học sinh.
+                        </p>
+                        <div class="item-footer-stat">
+                            <span>✦</span> Hiệu Ứng: Chính Xác Tuyệt Đối Trong Mọi Dạng Bài Thi
+                        </div>
+                    </div>
+
+                    <div class="item-slot-card" data-trait="mos">
+                        <div class="item-card-header">
+                            <div class="item-badge-icon">📜</div>
+                            <div class="item-title-wrap">
+                                <span class="item-rarity">TRANG BỊ CHUYÊN GIA</span>
+                                <h3 class="item-name">Bộ 3 Cuộn Sách MOS 2019</h3>
+                            </div>
+                        </div>
+                        <p class="item-effect-desc">
+                            Chứng chỉ Tin học văn phòng quốc tế MOS trọn bộ: <strong>Microsoft Excel, PowerPoint, Word (2019)</strong>. Thành thạo phân tích dữ liệu học viên, thiết kế giáo án trực quan và báo cáo tiến độ chi tiết.
+                        </p>
+                        <div class="item-footer-stat">
+                            <span>✦</span> Hiệu Ứng: Số Hóa & Tối Ưu Quản Lý Lớp Học
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION 3: AUGMENTS (LÕI NÂNG CẤP / CHỨNG CHỈ) ── -->
+            <section id="augments" class="tft-section">
+                <div class="section-title-wrap">
+                    <div class="section-title-line"></div>
+                    <div class="section-gem-icon"></div>
+                    <h2 class="section-title">LÕI NÂNG CẤP & CHỨNG CHỈ</h2>
+                    <div class="section-gem-icon"></div>
+                    <div class="section-title-line"></div>
+                </div>
+
+                <div class="augments-showcase-grid">
+                    <div class="augment-card prismatic" data-trait="ielts">
+                        <div class="augment-top-bar">
+                            <span class="augment-tier-pill">LÕI KIM CƯƠNG • BẬC THẦY</span>
+                            <span style="font-size: 1.2rem;">💎</span>
+                        </div>
+                        <div class="augment-icon-wrap">🌐</div>
+                        <h3 class="augment-title">IELTS 8.0 Overall</h3>
+                        <div class="augment-subtitle">Bài thi chuẩn hóa năng lực tiếng Anh quốc tế</div>
+                        <div class="ielts-skills-grid">
+                            <div class="ielts-skill-box">
+                                <span class="skill-label">Listening</span>
+                                <span class="skill-score">8.5</span>
+                            </div>
+                            <div class="ielts-skill-box">
+                                <span class="skill-label">Reading</span>
+                                <span class="skill-score">8.5</span>
+                            </div>
+                            <div class="ielts-skill-box">
+                                <span class="skill-label">Writing</span>
+                                <span class="skill-score">7.0</span>
+                            </div>
+                            <div class="ielts-skill-box">
+                                <span class="skill-label">Speaking</span>
+                                <span class="skill-score">7.0</span>
+                            </div>
+                        </div>
+                        <div class="augment-desc">
+                            <ul>
+                                <li>Phản xạ nghe nói tự nhiên, phát âm chuẩn xác và diễn đạt mạch lạc trong môi trường học thuật.</li>
+                                <li>Kỹ năng đọc hiểu phân tích sâu, xử lý các nguồn tài liệu quốc tế phức tạp với độ chính xác cao.</li>
+                                <li>Phương pháp sư phạm giúp học viên nắm chắc bí quyết chinh phục band điểm mục tiêu.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="augment-card gold" data-trait="mos">
+                        <div class="augment-top-bar">
+                            <span class="augment-tier-pill">LÕI VÀNG • CÔNG NGHỆ</span>
+                            <span style="font-size: 1.2rem;">🥇</span>
+                        </div>
+                        <div class="augment-icon-wrap">💻</div>
+                        <h3 class="augment-title">Chứng Chỉ Tin Học MOS</h3>
+                        <div class="augment-subtitle">Microsoft Office Specialist (Phiên bản 2019)</div>
+                        <div class="augment-desc">
+                            <ul>
+                                <li><strong>Microsoft Excel:</strong> Quản lý số liệu, tính toán thống kê và thiết lập biểu đồ theo dõi lộ trình tiến bộ của học viên.</li>
+                                <li><strong>Microsoft PowerPoint:</strong> Thiết kế slide giảng dạy trực quan sinh động, tối ưu khả năng tập trung và tiếp thu bài học.</li>
+                                <li><strong>Microsoft Word:</strong> Soạn thảo giáo trình, chuyên đề ngữ pháp và hệ thống bài tập chỉn chu, chuyên nghiệp.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="augment-card silver" data-trait="teaching">
+                        <div class="augment-top-bar">
+                            <span class="augment-tier-pill">LÕI BẠC • TRUYỀN THỐNG</span>
+                            <span style="font-size: 1.2rem;">🥈</span>
+                        </div>
+                        <div class="augment-icon-wrap">🏫</div>
+                        <h3 class="augment-title">Chuyên Tiếng Anh Vĩnh Phúc</h3>
+                        <div class="augment-subtitle">Nền tảng đào tạo tinh hoa cấp phổ thông</div>
+                        <div class="augment-desc">
+                            <ul>
+                                <li><strong>GPA môn Tiếng Anh 3 năm THPT:</strong><br>• Lớp 10: <strong>9,2</strong> | Lớp 11: <strong>9,2</strong> | Lớp 12: <strong>9,3</strong></li>
+                                <li>Đạt <strong>Giải Nhì HSG Tiếng Anh cấp Tỉnh lớp 11</strong> tại THPT Chuyên Vĩnh Phúc.</li>
+                                <li>Đạt <strong>9,25 môn Tiếng Anh</strong> trong kỳ thi THPT Quốc Gia năm 2024.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION 4: MATCH HISTORY (LỊCH SỬ HỌC VẤN) ───── -->
+            <section id="history" class="tft-section">
+                <div class="section-title-wrap">
+                    <div class="section-title-line"></div>
+                    <div class="section-gem-icon"></div>
+                    <h2 class="section-title">LỊCH SỬ ĐẤU & HỌC VẤN</h2>
+                    <div class="section-gem-icon"></div>
+                    <div class="section-title-line"></div>
+                </div>
+
+                <div class="timeline-stages">
+                    <div class="stage-node">
+                        <div class="stage-icon-pin">🏛️</div>
+                        <div class="stage-card" data-trait="ftu">
+                            <div class="stage-header">
+                                <h3 class="stage-school-title">Trường Đại học Ngoại thương (FTU)</h3>
+                                <span class="stage-time-badge">2024 - HIỆN TẠI</span>
+                            </div>
+                            <div class="stage-major">Chương trình chất lượng cao Kinh tế đối ngoại (CLC KTĐN)</div>
+                            <ul class="stage-details-list">
+                                <li>
+                                    <span class="stage-bullet">◆</span>
+                                    <span>Được đào tạo toàn diện về kinh tế quốc tế, thương mại toàn cầu, đàm phán hợp đồng bằng tiếng Anh và tư duy quản trị chiến lược.</span>
+                                </li>
+                                <li>
+                                    <span class="stage-bullet">◆</span>
+                                    <span>Tích cực tham gia các hoạt động học thuật, phát triển kỹ năng làm việc nhóm, thuyết trình và giải quyết vấn đề bằng Anh ngữ.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- TEC FTU Stage Node -->
+                    <div class="stage-node">
+                        <div class="stage-icon-pin">🚀</div>
+                        <div class="stage-card" data-trait="tec ftu" style="border-color: rgba(0, 245, 212, 0.5);">
+                            <div class="stage-header">
+                                <h3 class="stage-school-title" style="color: var(--hex-cyan);">CLB Nhà Doanh Nghiệp Tương Lai (TEC FTU)</h3>
+                                <span class="stage-time-badge" style="background: rgba(0, 245, 212, 0.15); border-color: var(--hex-cyan); color: var(--hex-cyan);">BAN TỔ CHỨC • 2024 - NAY</span>
+                            </div>
+                            <div class="stage-major">
+                                Thành viên Ban Tổ chức (Organizing Committee) • 
+                                <a href="https://www.facebook.com/tec.ftu" target="_blank" rel="noopener" style="color: var(--gold-bright); text-decoration: underline; font-weight: bold;">
+                                    facebook.com/tec.ftu ➔
+                                </a>
+                            </div>
+                            <ul class="stage-details-list">
+                                <li>
+                                    <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                    <span>Thành viên Ban Tổ chức của CLB học thuật & kinh doanh khởi nghiệp danh tiếng và giàu truyền thống hàng đầu tại Trường ĐH Ngoại thương.</span>
+                                </li>
+                                <li>
+                                    <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                    <span>Trực tiếp tham gia công tác xây dựng kế hoạch, vận hành sự kiện, điều phối các chương trình, cuộc thi kinh doanh và diễn đàn kết nối sinh viên với các doanh nghiệp, nhà đầu tư.</span>
+                                </li>
+                                <li>
+                                    <span class="stage-bullet" style="color: var(--hex-cyan);">◆</span>
+                                    <span>Rèn luyện năng lực quản trị dự án thực chiến, tư duy giải quyết vấn đề linh hoạt và kỹ năng đàm phán đối tác trong môi trường hội nhập cao.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="stage-node">
+                        <div class="stage-icon-pin">🎓</div>
+                        <div class="stage-card" data-trait="teaching">
+                            <div class="stage-header">
+                                <h3 class="stage-school-title">Trường THPT Chuyên Vĩnh Phúc</h3>
+                                <span class="stage-time-badge">2021 - 2024</span>
+                            </div>
+                            <div class="stage-major">Lớp Chuyên Tiếng Anh - Khối trường Chuyên danh tiếng</div>
+                            <ul class="stage-details-list">
+                                <li>
+                                    <span class="stage-bullet">◆</span>
+                                    <span>Điểm trung bình môn Tiếng Anh xuất sắc cả 3 năm: <strong>Lớp 10 (9,2) • Lớp 11 (9,2) • Lớp 12 (9,3)</strong>.</span>
+                                </li>
+                                <li>
+                                    <span class="stage-bullet">◆</span>
+                                    <span><strong>Giải Nhì kỳ thi HSG Tiếng Anh cấp Tỉnh lớp 11</strong> do Sở Giáo dục & Đào tạo Vĩnh Phúc tổ chức.</span>
+                                </li>
+                                <li>
+                                    <span class="stage-bullet">◆</span>
+                                    <span><strong>9,25 môn Tiếng Anh kỳ thi THPTQG 2024</strong>, thuộc top đầu thí sinh đạt điểm cao trên toàn quốc.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION 5: COMBAT (KINH NGHIỆM GIẢNG DẠY & GIA SƯ) -->
+            <section id="combat" class="tft-section">
+                <div class="section-title-wrap">
+                    <div class="section-title-line"></div>
+                    <div class="section-gem-icon"></div>
+                    <h2 class="section-title">CHIẾN TÍCH & KINH NGHIỆM GIẢNG DẠY</h2>
+                    <div class="section-gem-icon"></div>
+                    <div class="section-title-line"></div>
+                </div>
+
+                <div class="combat-experience-grid">
+                    <div class="combat-card" data-trait="teaching ielts">
+                        <div class="combat-card-top">
+                            <div class="combat-icon">🏫</div>
+                            <div class="combat-org">
+                                <h3 class="combat-role">Trợ Giảng Chuyên Môn</h3>
+                                <span class="combat-place">The IELTS Workshop (TIW)</span>
+                            </div>
+                        </div>
+                        <div class="combat-desc">
+                            <ul>
+                                <li>Hỗ trợ, chấm và sửa bài chi tiết cả 4 kỹ năng (Listening, Reading, Writing, Speaking) cho học viên các lớp luyện thi.</li>
+                                <li>Trực tiếp đứng lớp giảng dạy các buổi bổ trợ chuyên sâu kỹ năng Speaking, giúp học viên giải tỏa áp lực, cải thiện phát âm và độ lưu loát.</li>
+                                <li>Theo sát tiến độ học tập từng buổi, giải đáp thắc mắc chuyên môn và truyền cảm hứng tự học tiếng Anh.</li>
+                            </ul>
+                        </div>
+                        <div class="combat-tags">
+                            <span class="combat-pill">IELTS Speaking</span>
+                            <span class="combat-pill">Chấm chữa 4 kỹ năng</span>
+                            <span class="combat-pill">The IELTS Workshop</span>
+                        </div>
+                    </div>
+
+                    <div class="combat-card" data-trait="teaching">
+                        <div class="combat-card-top">
+                            <div class="combat-icon">🎯</div>
+                            <div class="combat-org">
+                                <h3 class="combat-role">Gia Sư 1-1 Ôn Luyện THPTQG</h3>
+                                <span class="combat-place">Luyện Thi Tốt Nghiệp THPT & Đại Học</span>
+                            </div>
+                        </div>
+                        <div class="combat-desc">
+                            <ul>
+                                <li>Thiết kế lộ trình học cá nhân hóa dựa trên học lực hiện tại của từng học sinh để tối ưu hóa điểm số môn Tiếng Anh.</li>
+                                <li>Tổng ôn toàn bộ các chuyên đề ngữ pháp trọng điểm, nhận diện các bẫy đề thi và chia sẻ mẹo làm bài trắc nghiệm nhanh gọn, chính xác.</li>
+                                <li>Đồng hành, giải đáp đề thi thử hàng tuần giúp học sinh nâng band điểm mục tiêu từ 8.5+ đến 9.0+.</li>
+                            </ul>
+                        </div>
+                        <div class="combat-tags">
+                            <span class="combat-pill">Luyện thi THPTQG</span>
+                            <span class="combat-pill">Lộ trình 1-1</span>
+                            <span class="combat-pill">Mục tiêu 9+</span>
+                        </div>
+                    </div>
+
+                    <div class="combat-card" data-trait="teaching">
+                        <div class="combat-card-top">
+                            <div class="combat-icon">👥</div>
+                            <div class="combat-org">
+                                <h3 class="combat-role">Gia Sư Nhóm Ôn Thi Vào 10</h3>
+                                <span class="combat-place">Kỳ Thi Tuyển Sinh Vào Lớp 10 Chuyên & CLC</span>
+                            </div>
+                        </div>
+                        <div class="combat-desc">
+                            <ul>
+                                <li>Dẫn dắt lớp học nhóm ôn thi vào các trường THPT Chuyên và trường THPT Chất lượng cao.</li>
+                                <li>Củng cố vững chắc nền tảng từ vựng học thuật, cấu trúc câu nâng cao và rèn luyện kỹ năng đọc hiểu văn bản phức tạp.</li>
+                                <li>Tạo môi trường học tập tương tác sôi nổi, thúc đẩy tinh thần tự giác và thi đua giữa các thành viên.</li>
+                            </ul>
+                        </div>
+                        <div class="combat-tags">
+                            <span class="combat-pill">Thi vào 10</span>
+                            <span class="combat-pill">Khối Chuyên & CLC</span>
+                            <span class="combat-pill">Lớp Nhóm Tương Tác</span>
+                        </div>
+                    </div>
+
+                    <div class="combat-card" data-trait="teaching ielts">
+                        <div class="combat-card-top">
+                            <div class="combat-icon">🌟</div>
+                            <div class="combat-org">
+                                <h3 class="combat-role">Gia Sư 1-1 & Nhóm IELTS</h3>
+                                <span class="combat-place">Đào Tạo IELTS Toàn Diện (Academic)</span>
+                            </div>
+                        </div>
+                        <div class="combat-desc">
+                            <ul>
+                                <li>Đảm nhận giảng dạy cả hình thức kèm riêng 1-1 lẫn theo nhóm cho học viên có nhu cầu thi chứng chỉ IELTS.</li>
+                                <li>Hệ thống hóa chiến thuật xử lý các dạng câu hỏi khó trong Reading & Listening (True/False/Not Given, Matching Headings, Map Labelling).</li>
+                                <li>Hướng dẫn tư duy lên ý tưởng (brainstorming) và triển khai luận điểm mạch lạc trong Writing Task 1 & Task 2.</li>
+                            </ul>
+                        </div>
+                        <div class="combat-tags">
+                            <span class="combat-pill">IELTS 1-1 & Nhóm</span>
+                            <span class="combat-pill">Writing Task 1 & 2</span>
+                            <span class="combat-pill">Listening & Reading 8.5</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── SECTION 6: CONTACT & CV PREVIEW ──────────────── -->
+            <section id="contact" class="tft-section contact-section">
+                <div class="section-title-wrap">
+                    <div class="section-title-line"></div>
+                    <div class="section-gem-icon"></div>
+                    <h2 class="section-title">KẾT NỐI & THÁCH ĐẤU</h2>
+                    <div class="section-gem-icon"></div>
+                    <div class="section-title-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card" data-copy="0329576978">
+                        <div class="contact-icon-bubble">📞</div>
+                        <span class="contact-title">SỐ ĐIỆN THOẠI / ZALO</span>
+                        <div class="contact-val">0329576978</div>
+                        <span class="contact-hint">Nhấp để sao chép</span>
+                    </div>
+
+                    <div class="contact-card" data-copy="ninhquoccuong06@gmail.com">
+                        <div class="contact-icon-bubble">✉️</div>
+                        <span class="contact-title">EMAIL HỌC THUẬT & CÔNG VIỆC</span>
+                        <div class="contact-val">ninhquoccuong06@gmail.com</div>
+                        <span class="contact-hint">Nhấp để sao chép</span>
+                    </div>
+
+                    <a class="contact-card" href="https://www.facebook.com/tec.ftu" target="_blank" rel="noopener">
+                        <div class="contact-icon-bubble">🚀</div>
+                        <span class="contact-title">CLB TEC FTU (BAN TỔ CHỨC)</span>
+                        <div class="contact-val">facebook.com/tec.ftu</div>
+                        <span class="contact-hint">Xem Fanpage Câu Lạc Bộ ➔</span>
+                    </a>
+
+                    <a class="contact-card" href="https://maps.google.com/?q=Lang+Thuong,+Dong+Da,+Ha+Noi" target="_blank" rel="noopener">
+                        <div class="contact-icon-bubble">📍</div>
+                        <span class="contact-title">KHU VỰC HOẠT ĐỘNG</span>
+                        <div class="contact-val">P. Láng Thượng, Q. Đống Đa, Hà Nội</div>
+                        <span class="contact-hint">Xem trên Google Maps ➔</span>
+                    </a>
+                </div>
+
+                <div class="cv-action-banner">
+                    <div class="cv-action-text">
+                        <h4>XEM BẢN CV GỐC ĐẦY ĐỦ</h4>
+                        <p>Xem hình ảnh CV bản gốc của Ninh Quốc Cường với đầy đủ bố cục chuẩn mực.</p>
+                    </div>
+                    <button id="view-cv-btn" class="cv-view-btn">
+                        <span>📜</span> XEM BẢN GỐC CV
+                    </button>
+                </div>
+
+                <footer class="portfolio-footer">
+                    <p>© 2026 <span class="footer-tft-badge">NINH QUỐC CƯỜNG</span> • THIẾT KẾ PHONG CÁCH SÀN ĐẤU THẦN THOẠI TFT • ĐẤU TRƯỜNG CHÂN LÝ</p>
+                </footer>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- =====================================================
+         ORIGINAL CV MODAL
+    ====================================================== -->
+    <div id="cv-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <span class="modal-title">BẢN GỐC CV • NINH QUỐC CƯỜNG</span>
+                <button id="close-cv-modal" class="modal-close-btn" aria-label="Đóng">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/cv_original.png" alt="Bản gốc CV Ninh Quốc Cường">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Engine -->
+    <script src="app.js"></script>
+</body>
+</html>
